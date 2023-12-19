@@ -97,11 +97,8 @@ The labels and the predictions of the models that we report in the manuscript ar
 Please cite:
 
 @misc{Kallergis2023,
-
 author = {Kallergis, G and Asgari, E and Azarkhalili, B and Hirsch, A and Mchardy, A C},
-
 title = {{Domain adaptable language modeling of chemical compounds identifies potent pathoblockers for Pseudomonas aeruginosa}},
-
 year = {2023}
 }
 
