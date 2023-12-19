@@ -1,0 +1,3 @@
+       n_layers: 8       n_att: 12       embds: last       augmentation: 80
+
+OrderedDict([('embds', 0.8318198030729325), ('augmentation', 0.14443838574000886), ('n_att', 0.01967338928876784), ('n_layers', 0.004068421898290755)])
