@@ -35,4 +35,5 @@ Governing Law
 This License shall be governed by and construed in accordance with the laws of Germany, without regard to its conflict of law principles.
 
 Acknowledgment
+
 BY USING THE SOFTWARE, THE USER ACKNOWLEDGES THAT THEY HAVE READ THIS LICENSE, UNDERSTAND IT, AND AGREE TO BE BOUND BY ITS TERMS.
