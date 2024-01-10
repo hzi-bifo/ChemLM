@@ -1,21 +1,28 @@
-ChemLM License Agreement
 Copyright (c) 2023, Helmholtz Centre for Infection Research
-All Rights Reserved
-License Grant
-Helmholtz Centre for Infection Research ("Licensor") hereby grants you ("Licensee") a non-exclusive, non-transferable, limited license to use MetaX software ("Software") solely for academic, research, and other non-commercial purposes.
-Restrictions
-a) Commercial Use Prohibited: The use of the Software for commercial purposes, including but not limited to the sale of the Software, its components, and any derivative product or service, profit-making activities, or patient care, is strictly prohibited under this license.
-b) Distribution: Licensee shall not distribute, sell, lease, rent, lend, or sublicense the Software to any third party.
-c) Modifications: Any modification, enhancement, derivative work of the Software, and any contribution to the Software remain the property of Licensor. Licensee shall not alter any copyright, trademark, or attribution notices within the Software without prior written consent from Licensor.
+All rights reserved.
+
+Helmholtz Centre for Infection Research (“Copyright holder”) holds the copyrights of and to the ChemLM software ("Software"). Redistribution and use of the Software, with or without modification, are permitted, provided that the following conditions are met:
+a) Commercial use Prohibited without permit: The Software is primarily intended for academic and research purposes. Use of the Software for commercial purposes, including but not limited to the sale of the Software, its components and any derivative product or service, profit making activities or patient care, is strictly prohibited without explicit permission from the developers.
+b) Requests for commercial use, distribution for profit, or use in patient care must be directed in writing to the Department of Computational Biology for Infection Research, Helmholtz Centre for Infection Research, reachable at amc14@helmholtz-hzi.de.
+c) Distribution: Redistribution and use of the Software with or without modification are permitted provided that redistributions of Software must retain the above copyright notice, list of conditions and the following disclaimer.
+d) Modifications: Any modification, enhancement, derivative work of the Software, and any contribution to the Software remain the property of the copyright holder. Users shall not alter any copyright, trademark, or attribution notices within the Software without prior written consent from the copyright holder.
+e) The Software may utilize or incorporate third-party resources, each subject to their respective licenses. By using the Software, users agree to comply with these licenses and acknowledge that failure to do so may result in legal liabilities.
+
 Intellectual Property
-The Software is protected by copyright and other intellectual property laws and treaties. Licensor retains all rights, title, and interest in and to the Software, including all related intellectual property rights.
+The Software is protected by copyright and other intellectual property laws and treaties. The copyright holder retains all rights, title, and interest in and to the Software, including all related intellectual property rights.
+This license does not grant permission to use the trade names, trademarks, service marks, or product names of Helmholtz Centre for Infection Research, except as required for reasonable and customary use in describing the origin of the Software and reproducing the content of the copyright notice.
+
 Disclaimer of Warranty
-The Software is provided "AS IS," without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANT ABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+
 Limitation of Liability
-In no event shall Licensor be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Software or the use or other dealings in the Software.
+IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 Termination
-This License is effective until terminated. The License will terminate immediately without notice from Licensor if Licensee fails to comply with any provision of this License. Upon termination, Licensee must destroy all copies of the Software.
+This License is effective until terminated. The License will terminate immediately without notice from copyright holder if the user fails to comply with any provision of this License. Upon termination, the user must destroy all copies of the Software.
+
 Governing Law
 This License shall be governed by and construed in accordance with the laws of Germany, without regard to its conflict of law principles.
+
 Acknowledgment
-BY USING THE SOFTWARE, THE LICENSEE ACKNOWLEDGES THAT THEY HAVE READ THIS LICENSE, UNDERSTAND IT, AND AGREE TO BE BOUND BY ITS TERMS.
+BY USING THE SOFTWARE, THE USER ACKNOWLEDGES THAT THEY HAVE READ THIS LICENSE, UNDERSTAND IT, AND AGREE TO BE BOUND BY ITS TERMS.
