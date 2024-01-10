@@ -2,6 +2,7 @@ Copyright (c) 2023, Helmholtz Centre for Infection Research
 All rights reserved.
 
 Helmholtz Centre for Infection Research (“Copyright holder”) holds the copyrights of and to the ChemLM software ("Software"). Redistribution and use of the Software, with or without modification, are permitted, provided that the following conditions are met:
+
 a) Commercial use Prohibited without permit: The Software is primarily intended for academic and research purposes. Use of the Software for commercial purposes, including but not limited to the sale of the Software, its components and any derivative product or service, profit making activities or patient care, is strictly prohibited without explicit permission from the developers.
 
 b) Requests for commercial use, distribution for profit, or use in patient care must be directed in writing to the Department of Computational Biology for Infection Research, Helmholtz Centre for Infection Research, reachable at amc14@helmholtz-hzi.de.
