@@ -12,16 +12,16 @@ def gen_dist(values, types, pr, s_path,t):
 	    {'values': values,
 	     'Type': types,
 	    })
-	g = sns.displot(df,x='values', hue='Type',kde=True,legend=True )
+	g = sns.displot(df,x='values', hue='Type',kde=True,legend=True,palette = [  '#3027D7','#d73027'] )
 	g.fig.subplots_adjust(top=.9)
 	g.ax.set_title('{}'.format(t), size=18)
 	plt.ylabel('Density', fontsize=15)
-	plt.xlabel('Lipschitz Constant', fontsize=15)
+	plt.xlabel('Ratio', fontsize=15)
 	plt.yticks(size=13)
 	plt.xticks(size=13)
 	plt.tight_layout(w_pad=0.05)
 	plt.locator_params(axis='x', nbins=5)
-	plt.savefig('{}/dist_{}.png'.format(s_path,pr))	
+	plt.savefig('{}/dist_{}.pdf'.format(s_path, pr))	
 
 #calculate the p-values for table 2, needs certain version of scipy for alternative arg
 def pvals_calc(real_, random_):
@@ -41,15 +41,15 @@ def calc_median(real_dist, random_dist):
 
 #function that processes the files of Lipschitz constants for both ChemLM's and random Lipschitz constant. Produces Table 2 and Suppl Figure 1
 def pvals_lip(save_path):
-	properties = ['mw', 'qed', 'hd', 'ha', 'psa', 'aromatic']
-	titles=['Molecular Weight','QED', 'Number of \nhydrogen-bond donors','Number of \nhydrogen-bond acceptors','Polar surface area','Number of\naromatic bonds']
+	properties = ['mw', 'qed','psa']
+	titles=['Molecular Weight','QED','Polar surface area']
 	current_directory = os.getcwd()
 	target_folder = os.path.abspath(os.path.join(current_directory, os.pardir, os.pardir))
 	target_f = os.path.abspath(os.path.join(target_folder, 'results/lipschitz_distributions/'))
 
 	for p,t in zip(properties,titles):
 		print(t)
-		file_path = os.path.join(target_f, 'lipschitz_random_{}_200n_100vals_revisited_upd.txt'.format(p))		
+		file_path = os.path.join(target_f, 'lipschitz_random_{}_200n_100rounds_f.txt'.format(p))		
 		f=open(file_path, 'r')
 		#f=open( '{}'.format(lipschitz_file), 'r')		
 		lines=f.readlines()
