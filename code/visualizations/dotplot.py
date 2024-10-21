@@ -5,15 +5,15 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn.objects as so
 
-df = pd.DataFrame({'Models': ['MolBERT', 'GAT', 'MPNN', 'GCNN', 'ChemLM \nvanilla', 'ChemLM \ndomain-\nadapted',
-	'ChemLM \ndomain-\nadapted \n& optimized', 'MolBERT', 'GAT', 'MPNN', 'GCNN', 'ChemLM \nvanilla', 'ChemLM \ndomain-\nadapted',
-	'ChemLM \ndomain-\nadapted \n& optimized', 'MolBERT', 'GAT', 'MPNN', 'GCNN', 'ChemLM \nvanilla', 'ChemLM \ndomain-\nadapted',
-	'ChemLM \ndomain-\nadapted \n& optimized'], 'F1-score':  [0.891, 0.783, 0.747, 0.695, 0.651,0.823,0.879 ,     0.814, 0.729, 0.666,
-	0.69, 0.508,0.661,0.804 ,     0.667, 0.638, 0.592, 0.655, 0.48,0.781,0.916 ], 'Type':  ['Transformer', 'Graph NN','Graph NN','Graph NN', 'ChemLM','ChemLM','ChemLM',   'Transformer', 'Graph NN','Graph NN','Graph NN', 'ChemLM','ChemLM','ChemLM',     'Transformer', 'Graph NN','Graph NN','Graph NN', 'ChemLM','ChemLM','ChemLM'  ],
-	'Dataset': ['BBBP','BBBP','BBBP','BBBP','BBBP','BBBP','BBBP',
-	'BACE','BACE','BACE','BACE','BACE','BACE','BACE','ClinTox','ClinTox','ClinTox','ClinTox','ClinTox','ClinTox','ClinTox'] })
+df = pd.DataFrame({'Models': ['MolBERT','MolFormer', 'GAT', 'MPNN', 'GCNN', 'ChemLM \nvanilla', 'ChemLM \ndomain-\nadapted',
+	'ChemLM \ndomain-\nadapted \n& optimized', 'MolBERT','MolFormer', 'GAT', 'MPNN', 'GCNN', 'ChemLM \nvanilla', 'ChemLM \ndomain-\nadapted',
+	'ChemLM \ndomain-\nadapted \n& optimized', 'MolBERT', 'MolFormer', 'GAT', 'MPNN', 'GCNN', 'ChemLM \nvanilla', 'ChemLM \ndomain-\nadapted',
+	'ChemLM \ndomain-\nadapted \n& optimized'], 'F1-score':  [0.891, 0.92,  0.783, 0.747, 0.695, 0.651,0.823,0.879 ,     0.814, 0.9, 0.729, 0.666,
+	0.69, 0.508,0.661,0.804 ,     0.667, 0.55, 0.638, 0.592, 0.655, 0.48,0.781,0.916 ], 'Type':  ['Transformer','Transformer', 'Graph NN','Graph NN','Graph NN', 'ChemLM','ChemLM','ChemLM',   'Transformer','Transformer', 'Graph NN','Graph NN','Graph NN', 'ChemLM','ChemLM','ChemLM',     'Transformer','Transformer', 'Graph NN','Graph NN','Graph NN', 'ChemLM','ChemLM','ChemLM'  ],
+	'Dataset': ['BBBP','BBBP','BBBP','BBBP','BBBP','BBBP','BBBP','BBBP',
+	'BACE','BACE','BACE','BACE','BACE','BACE','BACE','BACE','ClinTox','ClinTox','ClinTox','ClinTox','ClinTox','ClinTox','ClinTox','ClinTox'] })
 
-gp = sns.set_palette(['#fee090','#abd9e9','#74add1','#4575b4','#4575b4','#4575b4','#4575b4'])#a50026'])
+gp = sns.set_palette(['#fee090','#fed290','#abd9e9','#74add1','#4575b4','#4575b4','#4575b4','#4575b4'])#a50026'])
 theme_dict = {**axes_style("whitegrid"), "grid.linestyle": ":"}
 p2 = so.Plot(df,  'Dataset',"F1-score",color="Models").limit(y=(0, 1)).theme(theme_dict)
 p2.add(so.Dot())

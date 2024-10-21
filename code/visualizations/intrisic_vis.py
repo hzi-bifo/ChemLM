@@ -28,6 +28,10 @@ def umap_plot(embeddings,labels,dataset, title,nn,s_path):
 	n_components=2
 	num_embeddings=[t.detach().cpu().numpy() for t in embeddings]
 	y = umap.UMAP(n_components=2, n_neighbors=nn, metric='correlation',random_state=4, verbose=True).fit_transform(num_embeddings)
+	if dataset=='psa' or dataset =='mw':
+		labels = np.log(labels)
+	else:
+		labels = labels
 	min_l = np.min(labels)
 	max_l = np.max(labels)
 	r = np.array(labels)
@@ -322,18 +326,25 @@ def main():
     	if n_samples == -1 or n_rounds==-1:
     		print('Provide number of samples(--samples_num) and number of rounds (--rounds_num)')
     		return
-    	seeds = [0 for k in range(n_rounds)]
-    	for prop in tqdm.tqdm(properties):
-    		print(prop)
-    		f=open('{}/lipschitz_random_{}_{}n_{}rounds.txt'.format(save_p, prop, n_samples,n_rounds),'w')
-    		for seed in tqdm.tqdm(seeds):
-    			final_df= final.sample(n=n_samples, axis = 0)
+    	range_seeds = 100
+    	seeds = [k for k in range(range_seeds)]
+
+    	#f=open('lipschitz_revisited_9_23_{}.txt'.format(range_seeds),'w')
+    	for prop in properties:
+    		#f=open('lipschitz_random_{}_200n_100vals_revisited_upd.txt'.format(prop),'w')
+    		#f=open('/vol/projects/gkallerg/lpmcr/lipschitz/lipschitz_random_{}_200n_100rounds.txt'.format(prop),'w')
+    		f=open('{}/chemlm_random_{}_{}n_{}rounds_f.txt'.format(save_p, prop, n_samples,n_rounds),'w')
+
+    		for seed in seeds:
     			k_list=[]
 	    		k_random_list=[]
 	    		counter = 0
 	    		lab, embds=[],[]
-	    		lab_init_l=final_df[prop].tolist() #lab_init.tolist
-	    		sm_tokens,masks=enc(final_df.smiles.tolist(), t_path)
+	    		final_df= final.sample(n=200, axis = 0, random_state = seed)
+    			# final_df.to_csv('/vol/projects/gkallerg/lpmcr/lipschitz/lipschitz_{}_{}_random.csv'.format(prop,seed)) 	    		
+    			final_df.to_csv('{}/lipschitz_{}_{}_random_f.csv'.format(save_p, prop,seed)) 	    		    			
+	    		lab_init_l=final_df[prop].tolist() #lab_init.tolist()	    		
+	    		sm_tokens,masks=enc(final_df.smiles.tolist())
 	    		dataloader=create_dataloaders(sm_tokens,masks,lab_init_l,1,device)
 	    		for step,batch in enumerate(dataloader):
 	    			batch_inputs, batch_masks, batch_labels = tuple(b.to(device) for b in batch)
@@ -342,15 +353,15 @@ def main():
 	    				lab.extend(batch_labels)
 	    				embds.extend(outputs)#f.write('\n\nProperty: {}'.format(prop))
 	    		r_ls = random_space(lab, seed)
-	    		k_r=lipschitz(embds,r_ls)
-	    		f.write('{}|'.format(k_r))
+    			k_r=lipschitz(embds,r_ls)
+    			f.write('{}|'.format(k_r))
 	    		k=lipschitz(embds,lab)
 	    		f.write('{}\n'.format(k))
 	    		print('{}|{}'.format(k, k_r))
 	    		del final_df
 	    		del sm_tokens
 	    		del lab_init_l
-	    	f.close()
+    		f.close()
 	    	print('\n\n\n')
 	    	print('Closed file')    
 
