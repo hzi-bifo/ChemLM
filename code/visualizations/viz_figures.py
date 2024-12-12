@@ -40,11 +40,31 @@ def boxplot_experimental_2(save_path):
 	figure.set_size_inches(20, 15)
 	plt.show()
 
+def boxplot_experimental(save_path):
+	p2_ = sns.set_palette(['#fef090','sandybrown','#bf7467','#abd9e9', '#74add1','#4575b4','#d73027'])#a50026'])
+	model= ['MolBERT','MolBERT','MolBERT','MolBERT','MolBERT', 'MolFormer','MolFormer', 'MolFormer', 'MolFormer', 'MolFormer', 'ChemBERTa','ChemBERTa','ChemBERTa','ChemBERTa','ChemBERTa', 'GAT', 'GAT','GAT','GAT','GAT','MPNN','MPNN','MPNN','MPNN','MPNN','GCN','GCN','GCN','GCN','GCN','ChemLM','ChemLM','ChemLM','ChemLM','ChemLM']
+	f1 = [ 0.435, .495, .713, 0.441, .6,     0.47, 0.4, 0.29, 0.24, 0.33,       0.47, 0.4, 0.29, 0.17, 0.33,       0.529,  0.563,0.565, 0.441,0.697,  0.469,0.541,0.734,0.604,0.792,                     0.571,0.519,0.612,0.842,0.333,       0.458,0.760,0.914,0.927,0.898]
+	folds=['5' for _ in range(len(f1))]
+	df = pd.DataFrame(list(zip(model,f1, folds)),columns=['model', 'f1','folds'])
+	g=sns.boxplot(x=df['model']  ,y=df['f1'], palette=p2_)
+	#median_values = df.groupby("Models")["F1-score"].mean().reset_index()
+	p3 = sns.set_palette(['#fee090','#fed290','#fec090','#abd9e9', '#74add1','#4575b4','#d73027'])#a50026'])
+	sns.swarmplot(data = df, x='model', y='f1',  size=15, color='darkgray' )
+	plt.ylabel('F1-score', size=35)
+	g.tick_params(axis='x', labelsize=27)
+	plt.xlabel('Models', size=35)
+	g.set_xticklabels(['MolBERT','MolFormer','ChemBERTa', 'GAT','MPNN',  'GCNN','ChemLM'])
+	g.tick_params(axis='y', labelsize=27)
+	figure = plt.gcf()
+	figure.set_size_inches(20, 15)
+	#plt.show()
+	plt.savefig('{}/boxplot_experimental.png'.format(save_path))
+
 if __name__ =='__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--save_path', type=str, required=True)
 	args= parser.parse_args()
 	save_p = args.save_path
 	#boxplot_hyper(save_p)
-	#boxplot_experimental(save_p)
+	boxplot_experimental(save_p)
 
