@@ -28,6 +28,7 @@ def pvals_calc(real_, random_):
 	avg_real = np.mean(real_)
 	res = stats.ttest_1samp(random_,  avg_real,alternative='greater')
 	print(res)
+	print(res.confidence_interval(confidence_level=0.95))
 	print('\n\n')
 
 #calculate the median values for our and random Lipschitz constant in Table 2
@@ -49,7 +50,7 @@ def pvals_lip(save_path):
 
 	for p,t in zip(properties,titles):
 		print(t)
-		file_path = os.path.join(target_f, 'lipschitz_random_{}_200n_100rounds_f.txt'.format(p))		
+		file_path = os.path.join(target_f, 'chemlm_random_{}_200n_100rounds_f.txt'.format(p))#'lipschitz_random_{}_200n_100rounds_f.txt'.format(p))		
 		f=open(file_path, 'r')
 		#f=open( '{}'.format(lipschitz_file), 'r')		
 		lines=f.readlines()
@@ -69,8 +70,8 @@ def pvals_lip(save_path):
 			l.append('random')
 			l.append('ChemLM')
 		pvals_calc(real_k_l, random_k_l)
-		calc_median(real_k_l, random_k_l)
-		gen_dist(vales, l, p,save_path,t)
+		#calc_median(real_k_l, random_k_l)
+		#gen_dist(vales, l, p,save_path,t)
 
 if __name__ =='__main__':
 	parser = argparse.ArgumentParser()

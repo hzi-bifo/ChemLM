@@ -6,7 +6,7 @@ import argparse
 from sklearn import metrics
 from scipy import stats
 import os
-#script that implements Figure 1, 3b, the p-values and the distribution plots for Lipschitz constant.
+#script that implements Figure 2, 3b, the p-values and the distribution plots for Lipschitz constant.
 
 #Figure 1, using the values from the generated file of hp_opt.py
 #values reported in the corresponding file in results/optimization
@@ -23,22 +23,8 @@ def boxplot_hyper(save_path):
 	fig = plt.gcf()
 	fig.set_size_inches(20, 15)
 	plt.tight_layout(w_pad=0.05)
-	plt.savefig('{}/boxplot_hyperparameters'.format(save_path))
+	plt.savefig('{}/boxplot_hyperparameters'.format(save_path), dpi=400)
 
-def boxplot_experimental_2(save_path):
-	p2_ = sns.set_palette(['#fee090','#fed290','#abd9e9', '#74add1','#4575b4','#d73027'])#a50026'])
-	model= ['MolBERT','MolBERT','MolBERT','MolBERT','MolBERT', 'MolFormer','MolFormer', 'MolFormer', 'MolFormer', 'MolFormer', 'GAT', 'GAT','GAT','GAT','GAT','MPNN','MPNN','MPNN','MPNN','MPNN','GCN','GCN','GCN','GCN','GCN','ChemLM','ChemLM','ChemLM','ChemLM','ChemLM']
-	f1 = [ 0.435, .495, .713, 0.441, .6,   0.47, 0.4, 0.29, 0.24, 0.33,      0.529,  0.563,0.565, 0.441,0.697,  0.469,0.541,0.734,0.604,0.792,                     0.571,0.519,0.612,0.842,0.333,       0.458,0.760,0.914,0.927,0.898]
-	folds=['5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5','5']
-	df = pd.DataFrame(list(zip(model,f1, folds)),columns=['model', 'f1','folds'])
-	g = sns.boxplot(x=df['model']  ,y=df['f1'], palette=p2_)
-	plt.ylabel('F1-score', size=35)
-	plt.xlabel('Model', size=35)
-	g.set_xticklabels(['MolBERT','MolFormer','GAT','MPNN',  'GCNN','ChemLM'],size=25)
-	g.set_yticklabels([ '0.3','0.4','0.5', '0.6','0.7','0.8','0.9'],size=25)
-	figure = plt.gcf()
-	figure.set_size_inches(20, 15)
-	plt.show()
 
 def boxplot_experimental(save_path):
 	p2_ = sns.set_palette(['#fef090','sandybrown','#bf7467','#abd9e9', '#74add1','#4575b4','#d73027'])#a50026'])
@@ -58,13 +44,13 @@ def boxplot_experimental(save_path):
 	figure = plt.gcf()
 	figure.set_size_inches(20, 15)
 	#plt.show()
-	plt.savefig('{}/boxplot_experimental.png'.format(save_path))
+	plt.savefig('boxplot_experimental.png'.format(save_path), dpi=400)
 
 if __name__ =='__main__':
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--save_path', type=str, required=True)
 	args= parser.parse_args()
 	save_p = args.save_path
-	#boxplot_hyper(save_p)
+	boxplot_hyper(save_p)
 	boxplot_experimental(save_p)
 

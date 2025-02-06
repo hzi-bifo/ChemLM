@@ -56,6 +56,7 @@ Train, validation and test sets of the benchmark datasets are located in [data/b
 
 The dataset that was used for intrinsic evaluation (Lipschitz constant calculation and UMAP) can be found in [data/intrinsic](https://github.com/hzi-bifo/ChemLM/tree/main/data/intrinsic).
 
+Experimental data have been presented in peer-reviewed journals or patent applications and are detailed in Supplementary Table 4 and are not available here.
 
 ## Models 
 The trained models including the pretrained and the tokenizer can be found in [Huggingface](https://huggingface.co/gkallergis).
@@ -77,16 +78,21 @@ Using bin_calc.py in aux folder can be reproduced the evaluation metrics scores 
 
 It is advised to run the scripts on GPU with high memory resources.
 
-## Graph neural networks code
+
+## Code of graph neural networks and language models
 
 Graph neural networks are implemented using deepchem library. The code is located in [code/comparison](https://github.com/hzi-bifo/ChemLM/tree/main/code/comparison). To run the code, please replicate and activate the corresponding environment. The outcome of these models and the labels can be found in the following results section. 
 
 MolBERT was downloaded and used from the corresponding  [Github repo](https://github.com/BenevolentAI/MolBERT).
 
+Molformer was downloaded and used from the corresponding  [Github repo](https://github.com/IBM/molformer).
+
+We used the ChemBERTa model "PubChem10M SMILES BPE 180k" model from Hugging Face, and the evaluation script (chemberta_bnch.ipynb) is located at the comparison folder.
+
 ## Results
 We provide files that were used to generate the figures and the tables in the manuscript. 
 
-Lipschitz distribution for both ChemLM and random space are located in [results/lipschitz_distributions](https://github.com/hzi-bifo/ChemLM/tree/main/results/lipschitz_distributions).
+Lipschitz distribution for ChemLM, MolBERT and random space are located in [results/lipschitz_distributions](https://github.com/hzi-bifo/ChemLM/tree/main/results/lipschitz_distributions). As mentioned above we downloaded and deployed MolBERT for benchmark comparison. We modified one of its scripts to get the necessary results for the intrinsic evaluation. In  [code/aux_code](https://github.com/hzi-bifo/ChemLM/tree/main/code/aux_code) we show how we modified the finetune.py file in the package molbert/models  and the script run_molbert_lip.py we ran to get the results, having trained molbert first. 
 
 The results of hyperparameters optimization are reported in [results/optimization_files](https://github.com/hzi-bifo/ChemLM/tree/main/results/optimization_files).
 
