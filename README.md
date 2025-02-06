@@ -92,7 +92,7 @@ We used the ChemBERTa model "PubChem10M SMILES BPE 180k" model from Hugging Face
 ## Results
 We provide files that were used to generate the figures and the tables in the manuscript. 
 
-Lipschitz distribution for ChemLM, MolBERT and random space are located in [results/lipschitz_distributions](https://github.com/hzi-bifo/ChemLM/tree/main/results/lipschitz_distributions). As mentioned above we downloaded and deployed MolBERT for benchmark comparison. We modified one of its scripts to get the necessary results for the intrinsic evaluation. In  [code/aux_code](https://github.com/hzi-bifo/ChemLM/tree/main/code/aux_code) we show how we modified the finetune.py file in the package molbert/models  and the script run_molbert_lip.py we ran to get the results, having trained molbert first. 
+Lipschitz distribution for ChemLM, MolBERT and random space are located in [results/lipschitz_distributions](https://github.com/hzi-bifo/ChemLM/tree/main/results/lipschitz_distributions). As mentioned above we downloaded and deployed MolBERT for benchmark comparison. We modified one of its scripts to get the necessary results for the intrinsic evaluation. In  [code/aux_code](https://github.com/hzi-bifo/ChemLM/tree/main/code/aux_code) we show how we modified the finetune.py file of the package molbert/models and how we used the script run_molbert_lip.py to get the results, having trained a molbert model on the bbbp data first. 
 
 The results of hyperparameters optimization are reported in [results/optimization_files](https://github.com/hzi-bifo/ChemLM/tree/main/results/optimization_files).
 
