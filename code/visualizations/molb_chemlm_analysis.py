@@ -185,7 +185,6 @@ if __name__=='__main__':
 	mm_path = args.mpath
 	#calc_lips(props,save_p, m_path, mm_path, t_path)
 	for prop in props:
-		br
 		print('----------------')		
 		print(prop)
 		tasks(prop, save_p)

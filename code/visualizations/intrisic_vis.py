@@ -54,7 +54,7 @@ def umap_plot(embeddings,labels,dataset, title,nn,s_path):
 	plt.savefig('{}/umap_{}_{}'.format(s_path, nn, dataset))
 	print('Created UMAP plot for: {}'.format(title))
 
-# creates figure A1	
+# creates figure Supplementary Figure 1	
 def plt_heatmap(df,layers,s_path):
 	print(df)
 	tokens=df.tokens.to_list()
@@ -328,8 +328,6 @@ def main():
     		return
     	range_seeds = 100
     	seeds = [k for k in range(range_seeds)]
-
-    	#f=open('lipschitz_revisited_9_23_{}.txt'.format(range_seeds),'w')
     	for prop in properties:
     		#f=open('lipschitz_random_{}_200n_100vals_revisited_upd.txt'.format(prop),'w')
     		#f=open('/vol/projects/gkallerg/lpmcr/lipschitz/lipschitz_random_{}_200n_100rounds.txt'.format(prop),'w')
