@@ -24,6 +24,7 @@ def boxplot_hyper(save_path):
 	fig.set_size_inches(20, 15)
 	plt.tight_layout(w_pad=0.05)
 	plt.savefig('{}/boxplot_hyperparameters'.format(save_path), dpi=400)
+	plt.close()
 
 
 def boxplot_experimental(save_path):
@@ -44,7 +45,8 @@ def boxplot_experimental(save_path):
 	figure = plt.gcf()
 	figure.set_size_inches(20, 15)
 	#plt.show()
-	plt.savefig('boxplot_experimental.png'.format(save_path), dpi=400)
+	plt.savefig('{}/boxplot_experimental.png'.format(save_path), dpi=400)
+	plt.close()
 
 if __name__ =='__main__':
 	parser = argparse.ArgumentParser()
