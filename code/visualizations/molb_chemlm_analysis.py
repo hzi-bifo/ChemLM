@@ -113,7 +113,7 @@ def violin_plot(X , prop, save_path, prop2): #Violin plots for the comparison of
 def read_file(prop,  model_name):
 	current_directory = os.getcwd()
 	target_folder = os.path.abspath(os.path.join(current_directory, os.pardir, os.pardir))
-	target_f = os.path.abspath(os.path.join(target_folder, 'results/lipschitz_distributions/'))
+	target_f = os.path.abspath(os.path.join(target_folder, 'results/ratio_distributions/'))
 	if model_name == 'chemlm':
 		df = pd.read_csv(f'{target_f}/chemlm_chmb_{prop}.csv')
 	else:

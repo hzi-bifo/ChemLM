@@ -31,7 +31,7 @@ def pvals_calc(real_, random_):
 	print(res.confidence_interval(confidence_level=0.95))
 	print('\n\n')
 
-#calculate the median values for our and random Lipschitz constant in Table 2
+#calculate the median values for our and random space ratio in Table 2
 def calc_median(real_dist, random_dist):
 	med_real = round(np.median(real_dist),3)
 	std_real =round(np.std(real_dist),4)
@@ -40,7 +40,7 @@ def calc_median(real_dist, random_dist):
 	rat = round(float(med_real)/med_random,3)
 	print('& {} (\\pm {}) & {}\t (\\pm {}) & {} \n\n\n'.format(med_real, std_real, med_random, std_random,rat))
 
-#function that processes the files of Lipschitz constants for both ChemLM's and random Lipschitz constant. Produces Table 2 and Suppl Figure 1
+#function that processes the files of ratios for both ChemLM's and random's space. Produces Table 2 and Suppl Figure 1
 def pvals_lip(save_path):
 	properties = ['mw', 'qed','psa']
 	titles=['Molecular Weight','QED','Polar surface area']
@@ -50,7 +50,7 @@ def pvals_lip(save_path):
 
 	for p,t in zip(properties,titles):
 		print(t)
-		file_path = os.path.join(target_f, 'chemlm_random_{}_200n_100rounds_f.txt'.format(p))#'lipschitz_random_{}_200n_100rounds_f.txt'.format(p))		
+		file_path = os.path.join(target_f, 'chemlm_random_{}_200n_100rounds_f.txt'.format(p))
 		f=open(file_path, 'r')
 		#f=open( '{}'.format(lipschitz_file), 'r')		
 		lines=f.readlines()

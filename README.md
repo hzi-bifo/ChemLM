@@ -65,36 +65,102 @@ Models that end with "_da" are the domain adapted versions and models with "hp_o
 
 
 ## Code
-To run the desired script, use the corresponding ".sh" file as such:
-```
+
+To run the desired script, use the corresponding `.sh` file:
+```bash
 ./script.sh
 ```
+Each `.sh` file includes an example of the required arguments. All generated datasets are saved in the specified folders. It is advised to run the scripts on a GPU with high memory resources.
 
-In ft foder are located the hyperparameter optimization of the models. We provide multiple domain-adapted models for bbbp dataset in Huggingface repo. Those are to be used for reproducibility of hyperparameter optimization script. Please provide the path for the model, the tokenizer and the desired path to save the results in every '.sh' script.
- The evaluation on the benchmark datasets and the pretraining file are also located in the same folder. To perform evaluation, use the domain-adapted model from Huggingface. 
+---
 
-In visualization folder are located the scripts for the tables and the figures of the manuscript. 
-Using bin_calc.py in aux folder can be reproduced the evaluation metrics scores from the files that contain the predictions and the labels of each model. This script was used to create the tables. 
+### Hyperparameter Optimization (`ft/`)
+`hp_tune.py` performs hyperparameter optimization. All models are located in `models/hp_models` for reproducibility. Provide the path for the model, tokenizer, and desired save path in the corresponding `.sh` script. This script produces:
+- `study_{datasetName}.pkl` — Optuna study
+- `{datasetName}_optimization_results.txt` — Best hyperparameters and their importance
 
-It is advised to run the scripts on GPU with high memory resources.
+---
+
+### Domain Adaptation
+`training_domain_adaptation.py` trains a domain-adapted model and produces:
+- `model_{datasetName}_{augmentationNumber}` — Trained model
+- `time_{datasetName}_{augmentationNumber}.txt` — Training time log
+
+### Evaluation
+The benchmark evaluation(evaluate.py) and pretraining scripts are located in the same folder. To perform evaluation, use the domain-adapted model from the `models/` folder. Benchmark evaluation produces:
+- `results_{datasetName}_{modelType}.txt` — Evaluation results
+- `preds_{datasetName}_{modelType}.txt` — Model predictions
+- `labels_{datasetName}_{modelType}.txt` — True labels
+
+---
+
+### Visualization (`visualization/`)
+| Script | Description |
+|---|---|
+| `Bench_plot.ipynb` | Dotplot figure for model comparison on benchmark datasets |
+| `Molb_chemlm_analysis.py` | Violinplots (Fig. 5b) and statistical comparison (Table 3) |
+| `viz_figures.py` | Figures 2 and 3b — only a save path is required |
+| `ratio_analysis.py` | Figure 5a and Table 2 — only a save path is required |
+| `intrinsic_vis.py` | UMAP plots (Fig. 5c), SI heatmap, and ChemLM/random space analysis files — see `.sh` for required models and files |
+
+---
+
+### Auxiliary (`aux_folder/`)
+`bin_calc.py` reproduces evaluation metric scores from prediction and label files. This script was used to generate the results tables.
+
+---
+
+### Experimental (`experimental/`)
+| Script | Description |
+|---|---|
+| `Clustering_sets.py` | Hierarchical folds, dataset generation, and Table 5 (SI). Saves folds as `hierarchical_fold_{foldNumber}.csv` |
+| `experimental_evaluation.py` | Model evaluation on hierarchical folds. Saves results as `cv_experimental.txt` |
+
+## How to Use for a New Dataset
+
+For each step of the process, please use the arguments specified in the corresponding `.sh` script.
+
+1. **Domain Adaptation** — Run `training_domain_adaptation.py` to perform domain adaptation. Train several models using high augmentation numbers. The desired augmentation number must be provided as an argument.
+
+2. **Hyperparameter Optimization** — Run `hp_tune.py` to find the four main hyperparameters:
+   - Number of augmentations
+   - Layers
+   - Attention heads
+   - Embeddings type
+
+   Given enough resources, exploring the ideal learning rate and batch size is also advised. Feel free to experiment with other parameters as well. Best hyperparameters will be stored in the designated `save_path` along with an Optuna study.
+
+3. **Evaluation** — Run `evaluate.py` with the selected hyperparameters according to the `.sh` script.
 
 
-## Code of graph neural networks and language models
+## Comparison Models
 
-Graph neural networks are implemented using deepchem library. The code is located in [code/comparison](https://github.com/hzi-bifo/ChemLM/tree/main/code/comparison). To run the code, please replicate and activate the corresponding environment. The outcome of these models and the labels can be found in the following results section. 
+---
 
-MolBERT was downloaded and used from the corresponding  [Github repo](https://github.com/BenevolentAI/MolBERT).
+### Graph Neural Networks
+Implemented using the [DeepChem](https://deepchem.io/) library. Code is located in `code/comparison/` as `comparison.py`. To run the code, replicate and activate the corresponding environment.
 
-Molformer was downloaded and used from the corresponding  [Github repo](https://github.com/IBM/molformer).
+---
 
-We used the ChemBERTa model "PubChem10M SMILES BPE 180k" model from Hugging Face, and the evaluation script (chemberta_bnch.ipynb) is located at the comparison folder.
+### MolBERT
+Downloaded and used from the [MolBERT repository](https://github.com/BenevolentAI/MolBERT). Modifications were made only to edit the data path and output files. For intrinsic evaluation, the modification script is located in [`code/aux_code/`](https://github.com/hzi-bifo/ChemLM/tree/main/code/aux_code). Cloning the corresponding repository is required.
 
+---
+
+### MolFormer
+Downloaded and used from the [MolFormer repository](https://github.com/IBM/molformer). MolFormer is included in the `code/` folder as a `.zip`. 
+
+---
+
+### ChemBERTa
+We used the `PubChem10M_SMILES_BPE_180k` model from Hugging Face. The evaluation script (`chemberta_bnch.ipynb`) is located in the `comparison/` folder.
+
+---
 ## Results
 We provide files that were used to generate the figures and the tables in the manuscript. 
 
-Lipschitz distribution for ChemLM, MolBERT and random space are located in [results/lipschitz_distributions](https://github.com/hzi-bifo/ChemLM/tree/main/results/lipschitz_distributions). As mentioned above we downloaded and deployed MolBERT for benchmark comparison. We modified one of its scripts to get the necessary results for the intrinsic evaluation. In  [code/aux_code](https://github.com/hzi-bifo/ChemLM/tree/main/code/aux_code) we show how we modified the finetune.py file of the package molbert/models and how we used the script run_molbert_lip.py to get the results, having trained a molbert model on the bbbp data first. 
+Ratio distribution for ChemLM, MolBERT and random space are located in [results/ratio_distributions](https://github.com/hzi-bifo/ChemLM/tree/main/results/lipschitz_distributions). As mentioned above we downloaded and deployed MolBERT for benchmark comparison. We modified one of its scripts to get the necessary results for the intrinsic evaluation. In  [code/aux_code](https://github.com/hzi-bifo/ChemLM/tree/main/code/aux_code) we show how we modified the finetune.py file of the package molbert/models and how we used the script run_molbert_lip.py to get the results, having trained a molbert model on the bbbp data first. 
 
-The results of hyperparameters optimization are reported in [results/optimization_files](https://github.com/hzi-bifo/ChemLM/tree/main/results/optimization_files).
 
 The labels and the predictions of the models that we report in the manuscript are located in [results/experimental_files](https://github.com/hzi-bifo/ChemLM/tree/main/results/experimental_files).
 

@@ -56,7 +56,7 @@ def model_builder_mpnn(**model_params):
   dropout=model_params['dropout']
   b=model_params['batch_size']
   lr=model_params['learning_rate']
-  model = MPNNModel(mode='classification', n_tasks=1,dropout=dropout,batch_size=b,  learning_rate=lr)#, model_dir='/home/gkallergis/final_results/final_models/mpnn_{}_wval'.format(dt)  )
+  model = MPNNModel(mode='classification', n_tasks=1,dropout=dropout,batch_size=b,  learning_rate=lr)
   return model
 
 def model_builder_gcn(**model_params):
@@ -64,7 +64,7 @@ def model_builder_gcn(**model_params):
   dropout=model_params['dropout']
   b=model_params['batch_size']
   lr=model_params['learning_rate']
-  model = GCNModel(mode='classification', n_tasks=1,dropout=dropout, batch_size=b,  learning_rate=lr)#, model_dir='/home/gkallergis/final_results/final_models/gcn_{}_wval'.format(dt) )
+  model = GCNModel(mode='classification', n_tasks=1,dropout=dropout, batch_size=b,  learning_rate=lr)
   return model
 
 def model_builder_gat(**model_params):
@@ -72,7 +72,7 @@ def model_builder_gat(**model_params):
   dropout=model_params['dropout']
   b=model_params['batch_size']
   lr=model_params['learning_rate']
-  model = GATModel(mode='classification', n_tasks=1,dropout=dropout, batch_size=b,  learning_rate=lr)#, model_dir='/home/gkallergis/final_results/final_models/gat_{}_wval'.format(dt) )
+  model = GATModel(mode='classification', n_tasks=1,dropout=dropout, batch_size=b,  learning_rate=lr)
   return model
 
 
@@ -155,7 +155,7 @@ if __name__=="__main__":
   arg_vals_cv=np.argmax(probs_val_cv,axis=1)
   metrics_val=compute_metrics(arg_vals_cv,datasets_l[1].y)
   f.write('{}'.format(metrics_val))
-  #smiles1,labels1=load_data('/vol/projects/gkallerg/lpmcr/data/datasets/{}_{}_dc_skf.csv'.format(name,'training'))
+
   smiles1,labels1=load_data('{}_{}_stratified_0.2_clf.csv'.format('train',name))
   smiles2,labels2=load_data('{}_{}_stratified_0.2_clf.csv'.format('validation',name))
   smiles_tr_vl=smiles1+smiles2

@@ -151,7 +151,7 @@ def create_embeddings_heatmap(model,tokenizer,compounds_func,flag_layer,prop):
 		class_label_output=mean_w[:,0]
 		return ex,len(hidden_state), class_label_output.detach().numpy() 
 
-def lipschitz(vec,labels):
+def ratio(vec,labels):
 	z1=zip(vec,labels)
 	k=[]
 	for pair in itertools.combinations(z1,2):
@@ -329,8 +329,7 @@ def main():
     	range_seeds = 100
     	seeds = [k for k in range(range_seeds)]
     	for prop in properties:
-    		#f=open('lipschitz_random_{}_200n_100vals_revisited_upd.txt'.format(prop),'w')
-    		#f=open('/vol/projects/gkallerg/lpmcr/lipschitz/lipschitz_random_{}_200n_100rounds.txt'.format(prop),'w')
+
     		f=open('{}/chemlm_random_{}_{}n_{}rounds_f.txt'.format(save_p, prop, n_samples,n_rounds),'w')
 
     		for seed in seeds:
@@ -339,8 +338,7 @@ def main():
 	    		counter = 0
 	    		lab, embds=[],[]
 	    		final_df= final.sample(n=200, axis = 0, random_state = seed)
-    			# final_df.to_csv('/vol/projects/gkallerg/lpmcr/lipschitz/lipschitz_{}_{}_random.csv'.format(prop,seed)) 	    		
-    			final_df.to_csv('{}/lipschitz_{}_{}_random_f.csv'.format(save_p, prop,seed)) 	    		    			
+    			final_df.to_csv('{}/ratio_{}_{}_random_f.csv'.format(save_p, prop,seed)) 	    		    			
 	    		lab_init_l=final_df[prop].tolist() #lab_init.tolist()	    		
 	    		sm_tokens,masks=enc(final_df.smiles.tolist())
 	    		dataloader=create_dataloaders(sm_tokens,masks,lab_init_l,1,device)
@@ -351,9 +349,9 @@ def main():
 	    				lab.extend(batch_labels)
 	    				embds.extend(outputs)#f.write('\n\nProperty: {}'.format(prop))
 	    		r_ls = random_space(lab, seed)
-    			k_r=lipschitz(embds,r_ls)
+    			k_r=ratio(embds,r_ls)
     			f.write('{}|'.format(k_r))
-	    		k=lipschitz(embds,lab)
+	    		k=ratio(embds,lab)
 	    		f.write('{}\n'.format(k))
 	    		print('{}|{}'.format(k, k_r))
 	    		del final_df
