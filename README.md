@@ -16,7 +16,7 @@ analysis of the ChemLM space confirm the wide applicability of ChemLM for enhanc
 
 ![Image](/Figures/Chemlm_overview.png)	
 
-The described approach is in [Chemrxiv](https://chemrxiv.org/engage/chemrxiv/article-details/657cb14de9ebbb4db9fa0e13).
+The described approach is in [Nature Communications Chemistry](https://www.nature.com/articles/s42004-025-01484-4).
 
 ## Replicate environment:
 To replicate the conda environment of our approach
@@ -168,8 +168,24 @@ The labels and the predictions of the models that we report in the manuscript ar
 
 Please cite:
 
-@misc{Kallergis2023,    
-author = {Kallergis, G and Asgari, E and Azarkhalili, B and Hirsch, A and Mchardy, A C},   
-title = {{Domain adaptable language modeling of chemical compounds identifies potent pathoblockers for Pseudomonas aeruginosa}},    
-year = {2023}    
+Kallergis, G., Asgari, E., Empting, M. et al. Domain adaptable language modeling of chemical compounds identifies potent pathoblockers for Pseudomonas aeruginosa. Commun Chem 8, 114 (2025). https://doi.org/10.1038/s42004-025-01484-4
+
+@ARTICLE{Kallergis2025-hu,
+  title     = "Domain adaptable language modeling of chemical compounds
+               identifies potent pathoblockers for Pseudomonas aeruginosa",
+  author    = "Kallergis, Georgios and Asgari, Ehsannedin and Empting, Martin
+               and Hirsch, Anna K H and Klawonn, Frank and McHardy, Alice C",
+  journal   = "Commun. Chem.",
+  publisher = "Nature Publishing Group",
+  volume    =  8,
+  number    =  1,
+  pages     =  114,
+  year      =  2025,
+  url       = "http://dx.doi.org/10.1038/s42004-025-01484-4",
+  doi       = "10.1038/s42004-025-01484-4",
+  pmc       = "PMC11992043",
+  pmid      =  40216964,
+  issn      = "2399-3669,2399-3669",
+  language  = "en"
 }
+
