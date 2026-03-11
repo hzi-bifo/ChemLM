@@ -108,14 +108,6 @@ The benchmark evaluation(evaluate.py) and pretraining scripts are located in the
 ### Auxiliary (`aux_folder/`)
 `bin_calc.py` reproduces evaluation metric scores from prediction and label files. This script was used to generate the results tables.
 
----
-
-### Experimental (`experimental/`)
-| Script | Description |
-|---|---|
-| `Clustering_sets.py` | Hierarchical folds, dataset generation, and Table 5 (SI). Saves folds as `hierarchical_fold_{foldNumber}.csv` |
-| `experimental_evaluation.py` | Model evaluation on hierarchical folds. Saves results as `cv_experimental.txt` |
-
 ## How to Use for a New Dataset
 
 For each step of the process, please use the arguments specified in the corresponding `.sh` script.
