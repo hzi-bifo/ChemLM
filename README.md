@@ -108,22 +108,40 @@ The benchmark evaluation(evaluate.py) and pretraining scripts are located in the
 ### Auxiliary (`aux_folder/`)
 `bin_calc.py` reproduces evaluation metric scores from prediction and label files. This script was used to generate the results tables.
 
-## How to Use for a New Dataset
 
-For each step of the process, please use the arguments specified in the corresponding `.sh` script.
+## Training pipeline for a new dataset.
 
-1. **Domain Adaptation** — Run `training_domain_adaptation.py` to perform domain adaptation. Train several models using high augmentation numbers. The desired augmentation number must be provided as an argument.
+> **Note:** All scripts are located in `code/ft`. For each step, use the arguments specified in the corresponding `.sh` script or here.
 
-2. **Hyperparameter Optimization** — Run `hp_tune.py` to find the four main hyperparameters:
-   - Number of augmentations
-   - Layers
-   - Attention heads
-   - Embeddings type
+### Prerequisites
+- GPU with sufficient VRAM for training
+- Dependencies installed (see Replicate environment section)
 
-   Given enough resources, exploring the ideal learning rate and batch size is also advised. Feel free to experiment with other parameters as well. Best hyperparameters will be stored in the designated `save_path` along with an Optuna study.
+### Steps
 
-3. **Evaluation** — Run `evaluate.py` with the selected hyperparameters according to the `.sh` script.
+### 1. Domain Adaptation
+Run `training_domain_adaptation.py` to perform domain adaptation. Train several models across a range of augmentation numbers (e.g., 80-100) to compare results. The augmentation number is required as an argument.
+```bash
+python training_domain_adaptation.py --tokenizer_path 'models/pretrained/trial_tokenizer/' --train_path 'data/benchmark/train.csv' --valid_path  'data/benchmark/validation.csv' --test_path './data/benchmark/test.csv' --model_path 'models/pretrained/trial_model/' --save_path 'results' --augmentation_number 100 --dataset 'dataset_name'	
+```
 
+### 2. Hyperparameter Optimization
+Run `hp_tune.py` to find the four main hyperparameters:
+- Number of augmentations
+- Number of Layers
+- Number of Attention heads
+- Embedding type
+
+Exploring learning rate and batch size is also advised if compute allows. Additional parameters can be tuned as needed. The best hyperparameters will be stored in the designated `save_path` along with an Optuna study.
+```bash
+python hp_tune.py --tokenizer_path '/.../trial_tokenizer' --train_path '/.../train.csv' --valid_path  '/.../validation.csv' --model_path '/.../models/'  --save_path '' --dataset 'dataset_name'
+```
+
+### 3. Evaluation
+Run `evaluate.py` with the hyperparameters selected in the previous step. Results will be saved to `<output_path>`. Adjust the learning rate and batch size so that the model does not overfit.
+```bash
+python evaluate.py --dataset "dataset_name" --epochs 30 --batch_size 16 --lrate 0.00005 --att_heads opt_num_heads --layers opt_num_layers --augment_number opt_num_augm --embs "opt_embd_type" --ft "True"  --tokenizer_path '' --model_path '' --save_path '' 
+```
 
 ## Comparison Models
 
