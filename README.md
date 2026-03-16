@@ -86,7 +86,7 @@ Each `.sh` file includes an example of the required arguments. All generated dat
 - `model_{datasetName}_{augmentationNumber}` — Trained model
 - `time_{datasetName}_{augmentationNumber}.txt` — Training time log
 
-### Evaluation
+### Fine-tuning
 The benchmark evaluation(evaluate.py) and pretraining scripts are located in the same folder. To perform evaluation, use the domain-adapted model from the `models/` folder. Benchmark evaluation produces:
 - `results_{datasetName}_{modelType}.txt` — Evaluation results
 - `preds_{datasetName}_{modelType}.txt` — Model predictions
