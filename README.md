@@ -127,7 +127,7 @@ python training_domain_adaptation.py --tokenizer_path 'models/pretrained/trial_t
 
 ### 2. Hyperparameter Optimization
 Run `hp_tune.py` to find the four main hyperparameters:
-- Number of augmentations
+- Number of augmentations per molecule
 - Number of Layers
 - Number of Attention heads
 - Embedding type
@@ -137,7 +137,7 @@ Exploring learning rate and batch size is also advised if compute allows. Additi
 python hp_tune.py --tokenizer_path '/.../trial_tokenizer' --train_path '/.../train.csv' --valid_path  '/.../validation.csv' --model_path '/.../models/'  --save_path '' --dataset 'dataset_name'
 ```
 
-### 3. Evaluation
+### 3. Fine-tuning
 Run `evaluate.py` with the hyperparameters selected in the previous step. Results will be saved to `<output_path>`. Adjust the learning rate and batch size so that the model does not overfit.
 ```bash
 python evaluate.py --dataset "dataset_name" --epochs 30 --batch_size 16 --lrate 0.00005 --att_heads opt_num_heads --layers opt_num_layers --augment_number opt_num_augm --embs "opt_embd_type" --ft "True"  --tokenizer_path '' --model_path '' --save_path '' 
